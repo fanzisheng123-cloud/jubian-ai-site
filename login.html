@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>登录 · 聚变 JuBian AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;800&display=swap" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+<link href="assets/styles.css" rel="stylesheet" />
+</head>
+<body>
+<div class="auth-wrap">
+  <!-- Left brand side -->
+  <aside class="auth-side">
+    <a class="logo" href="index.html"><span class="logo-mark"><svg class="logo-glyph" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="4.8" y="19" width="4.8" height="8.2" rx="1.8" fill="#fff" fill-opacity=".5"/><rect x="13.6" y="13.4" width="4.8" height="13.8" rx="1.8" fill="#fff" fill-opacity=".72"/><rect x="22.4" y="7.6" width="4.8" height="19.6" rx="1.8" fill="#fff"/><path d="M6 16.5 L15 11 L20 13.5 L27 6.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M22.6 6.5 H27 V10.9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>聚变 <small style="color:rgba(255,255,255,.7)">JuBian&nbsp;AI</small></a>
+    <div class="auth-hero">
+      <span class="auth-badge"><i class="ri-shield-star-line"></i> 已服务 18,000+ 开发者</span>
+      <h2>AI 时代开发者的<br />一站式变现聚合平台</h2>
+      <p>聚合广告、API 计费、订阅与 Agent 分成，用智能竞价引擎持续优化每一次调用的收益，并在商单市场对接品牌合作。</p>
+      <ul class="auth-feats">
+        <li><i class="ri-checkbox-circle-fill"></i> 广告 · API · 订阅 · Agent 分成，一站聚合</li>
+        <li><i class="ri-checkbox-circle-fill"></i> AI 竞价引擎实时优化 eCPM 与填充率</li>
+        <li><i class="ri-checkbox-circle-fill"></i> 人群意图分层 + AI 物料审核打标</li>
+        <li><i class="ri-checkbox-circle-fill"></i> 商单市场对接品牌，承接更多合作</li>
+      </ul>
+      <div class="auth-stats">
+        <div><b>18K+</b><small>接入开发者</small></div>
+        <div><b>12亿</b><small>日均调用</small></div>
+        <div><b>+41%</b><small>收益提升</small></div>
+      </div>
+    </div>
+    <div class="auth-quote">
+      <p>"接入聚变两个月，我们的 AI 工具 ARPU 提升了 38%，竞价引擎帮我们省下大量手动调优的时间。"</p>
+      <div class="who"><img src="https://i.pravatar.cc/80?img=15" alt="用户" /><div><b>林哲</b> · 某 AI 效率工具 创始人</div></div>
+    </div>
+  </aside>
+
+  <!-- Right form -->
+  <main class="auth-main">
+    <a class="back-home" href="index.html"><i class="ri-arrow-left-line"></i> 返回首页</a>
+    <div class="auth-card">
+      <div class="auth-head"><h1 id="authTitle">欢迎回来</h1><p id="authDesc">登录你的账号，进入变现聚合控制台</p></div>
+      <button class="btn btn-primary btn-block guest-btn" onclick="guestLogin()"><i class="ri-rocket-2-line"></i> 一键进入 · 免注册体验演示</button>
+      <div class="auth-tabs">
+        <button id="tab-login" class="active" onclick="switchTab('login')">登录</button>
+        <button id="tab-register" onclick="switchTab('register')">注册</button>
+      </div>
+
+      <form id="authForm" onsubmit="return submitAuth(event)">
+        <div class="field" id="f-name" style="display:none">
+          <label>姓名 / 昵称</label>
+          <div class="input"><i class="ri-user-line"></i><input type="text" id="name" placeholder="请输入你的姓名" /></div>
+          <div class="err">请输入姓名</div>
+        </div>
+        <div class="field" id="f-email">
+          <label>邮箱</label>
+          <div class="input"><i class="ri-mail-line"></i><input type="email" id="email" placeholder="you@example.com" value="demo@jubian.ai" /></div>
+          <div class="err">请输入有效邮箱</div>
+        </div>
+        <div class="field" id="f-pass">
+          <label>密码</label>
+          <div class="input"><i class="ri-lock-2-line"></i><input type="password" id="pass" placeholder="至少 6 位" value="123456" /><i class="ri-eye-off-line" id="eye" style="cursor:pointer" onclick="togglePass()"></i></div>
+          <div class="err">密码至少 6 位</div>
+        </div>
+        <div class="auth-row">
+          <label class="checkbox"><input type="checkbox" id="remember" checked /> 记住我</label>
+          <a href="#" onclick="toast('演示环境：请使用任意邮箱和 6 位以上密码登录','warn');return false;">忘记密码？</a>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="submitBtn">登录控制台</button>
+      </form>
+
+      <div class="auth-divider">或使用第三方账号</div>
+      <div class="auth-sso">
+        <button onclick="ssoLogin('GitHub')"><img src="https://cdn.simpleicons.org/github/181717" alt="GitHub" /> GitHub</button>
+        <button onclick="ssoLogin('Google')"><img src="https://cdn.simpleicons.org/google" alt="Google" /> Google</button>
+        <button onclick="ssoLogin('微信')"><img src="https://cdn.simpleicons.org/wechat/07C160" alt="微信" /> 微信</button>
+      </div>
+      <p style="text-align:center;color:var(--ink-dim);font-size:12.5px;margin-top:14px">登录即代表同意 <a href="#" style="color:var(--brand)">服务条款</a> 与 <a href="#" style="color:var(--brand)">隐私政策</a></p>
+    </div>
+  </main>
+</div>
+
+<script src="assets/app.js"></script>
+<script>
+  let mode = 'login';
+  const params = new URLSearchParams(location.search);
+  if (params.get('tab') === 'register') switchTab('register');
+
+  function switchTab(m) {
+    mode = m;
+    document.getElementById('tab-login').classList.toggle('active', m === 'login');
+    document.getElementById('tab-register').classList.toggle('active', m === 'register');
+    document.getElementById('f-name').style.display = m === 'register' ? 'block' : 'none';
+    document.getElementById('submitBtn').textContent = m === 'register' ? '创建账号并进入' : '登录控制台';
+    document.getElementById('authTitle').textContent = m === 'register' ? '创建账号' : '欢迎回来';
+    document.getElementById('authDesc').textContent = m === 'register' ? '注册即可免费接入，开始你的变现之旅' : '登录你的账号，进入变现聚合控制台';
+  }
+  function togglePass() {
+    const p = document.getElementById('pass'), e = document.getElementById('eye');
+    if (p.type === 'password') { p.type = 'text'; e.className = 'ri-eye-line'; }
+    else { p.type = 'password'; e.className = 'ri-eye-off-line'; }
+  }
+  function go(user, msg) {
+    Auth.login(user);
+    toast(msg || '登录成功，正在进入控制台…');
+    setTimeout(() => location.href = Auth.dashUrl(user), 600);
+  }
+  function ssoLogin(name) { go({ name: name + ' 用户', email: 'sso@jubian.ai', plan: 'Growth 成长版', via: name }, '已通过 ' + name + ' 登录，正在进入控制台…'); }
+  function guestLogin() { go({ name: '体验用户', email: 'guest@jubian.ai', plan: 'Growth 成长版（演示）', guest: true }, '欢迎体验，正在进入控制台…'); }
+  function setInvalid(id, bad) { document.getElementById(id).classList.toggle('invalid', bad); }
+  function submitAuth(e) {
+    e.preventDefault();
+    const email = document.getElementById('email').value.trim();
+    const pass = document.getElementById('pass').value;
+    const name = document.getElementById('name').value.trim();
+    let ok = true;
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    setInvalid('f-email', !emailOk); if (!emailOk) ok = false;
+    setInvalid('f-pass', pass.length < 6); if (pass.length < 6) ok = false;
+    if (mode === 'register') { setInvalid('f-name', !name); if (!name) ok = false; }
+    if (!ok) { toast('请检查表单填写', 'warn'); return false; }
+    go({ name: mode === 'register' ? name : (email.split('@')[0] || '开发者'), email: email, plan: 'Growth 成长版' },
+      mode === 'register' ? '账号创建成功，正在进入控制台…' : '登录成功，正在进入控制台…');
+    return false;
+  }
+</script>
+</body>
+</html>
