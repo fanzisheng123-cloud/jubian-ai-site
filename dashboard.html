@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>控制台 · 聚变 JuBian AI</title>
+<title>控制台 · Almore</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;800&display=swap" rel="stylesheet" />
@@ -15,16 +15,18 @@
   <!-- ===== Sidebar ===== -->
   <div class="side-mask" id="sideMask" onclick="toggleSide(false)"></div>
   <aside class="sidebar" id="sidebar">
-    <a class="logo" href="index.html"><span class="logo-mark"><svg class="logo-glyph" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="4.8" y="19" width="4.8" height="8.2" rx="1.8" fill="#fff" fill-opacity=".5"/><rect x="13.6" y="13.4" width="4.8" height="13.8" rx="1.8" fill="#fff" fill-opacity=".72"/><rect x="22.4" y="7.6" width="4.8" height="19.6" rx="1.8" fill="#fff"/><path d="M6 16.5 L15 11 L20 13.5 L27 6.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M22.6 6.5 H27 V10.9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>聚变 <small>JuBian</small></a>
+    <a class="logo" href="index.html"><span class="logo-mark"><svg class="logo-glyph" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="4.8" y="19" width="4.8" height="8.2" rx="1.8" fill="#fff" fill-opacity=".5"/><rect x="13.6" y="13.4" width="4.8" height="13.8" rx="1.8" fill="#fff" fill-opacity=".72"/><rect x="22.4" y="7.6" width="4.8" height="19.6" rx="1.8" fill="#fff"/><path d="M6 16.5 L15 11 L20 13.5 L27 6.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M22.6 6.5 H27 V10.9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Almore <small>百度网盘</small></a>
     <div class="side-group">总览</div>
     <div class="side-link active" data-view="overview"><i class="ri-dashboard-3-line"></i> 数据概览</div>
     <div class="side-link" data-view="reports"><i class="ri-file-chart-line"></i> 收益报表</div>
     <div class="side-group">变现管理</div>
     <div class="side-link" data-view="channels"><i class="ri-stack-line"></i> 变现渠道</div>
     <div class="side-link" data-view="apps"><i class="ri-apps-2-line"></i> 应用与广告位</div>
+    <div class="side-link" data-view="budget"><i class="ri-database-2-line"></i> 聚合预算池</div>
     <div class="side-link" data-view="strategy"><i class="ri-cpu-line"></i> 竞价策略</div>
     <div class="side-group">智能增长</div>
     <div class="side-link" data-view="audience"><i class="ri-group-line"></i> 人群与意图</div>
+    <div class="side-link" data-view="creative"><i class="ri-magic-line"></i> AI 素材生产</div>
     <div class="side-link" data-view="review"><i class="ri-shield-check-line"></i> AI 物料审核 <span class="badge" id="reviewBadge">5</span></div>
     <div class="side-group">商业合作</div>
     <div class="side-link" data-view="orders"><i class="ri-briefcase-4-line"></i> 商单市场 <span class="badge" id="orderBadge">6</span></div>
@@ -249,6 +251,54 @@
             </div>
           </div>
         </div>
+      </section>
+
+      <!-- ============ BUDGET POOL ============ -->
+      <section class="view" id="v-budget">
+        <div class="promo">
+          <div class="promo-ic"><i class="ri-database-2-line"></i></div>
+          <div class="promo-tx"><b>聚合预算池 · 多元预算接入，打开收益空间</b><span>通过接入多方预算与客户资源，提升填充能力、收入稳定性与场景覆盖。</span></div>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi"><div class="top"><span class="ki t-green"><i class="ri-stack-line"></i></span></div><div class="val" id="bpTotal">0</div><div class="lbl">接入预算源</div></div>
+          <div class="kpi"><div class="top"><span class="ki t-indigo"><i class="ri-focus-2-line"></i></span><span class="chg up"><i class="ri-arrow-up-line"></i> 2.3%</span></div><div class="val">98.6%</div><div class="lbl">综合填充率</div></div>
+          <div class="kpi"><div class="top"><span class="ki t-cyan"><i class="ri-funds-box-line"></i></span><span class="chg up"><i class="ri-arrow-up-line"></i> 6.1%</span></div><div class="val">¥44.5</div><div class="lbl">加权 eCPM</div></div>
+          <div class="kpi"><div class="top"><span class="ki t-amber"><i class="ri-money-cny-circle-line"></i></span></div><div class="val" id="bpRev">0</div><div class="lbl">预算池日收益</div></div>
+        </div>
+        <div class="grid-2">
+          <div class="panel"><div class="panel-h"><div><h3>预算源构成</h3><div class="sub">各预算源贡献占比</div></div></div><div class="chart-sm"><canvas id="budgetChart"></canvas></div></div>
+          <div class="panel">
+            <div class="panel-h"><div><h3>预算池价值</h3><div class="sub">多元接入带来的收益提升</div></div></div>
+            <div class="bp-benefits">
+              <div><span class="ki t-indigo"><i class="ri-line-chart-line"></i></span><div><b>更高填充</b><small>降低对单一预算的依赖</small></div></div>
+              <div><span class="ki t-green"><i class="ri-database-2-line"></i></span><div><b>更优 eCPM</b><small>让优质流量获得更多竞争</small></div></div>
+              <div><span class="ki t-amber"><i class="ri-shield-check-line"></i></span><div><b>更稳收入</b><small>提升收益稳定性与可持续性</small></div></div>
+              <div><span class="ki t-violet"><i class="ri-share-line"></i></span><div><b>更多覆盖</b><small>支持更多场景与客户结构</small></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="toolbar"><div><b style="font-size:15px">预算源管理</b><div class="sub" style="color:var(--ink-dim);font-size:13px">开启/关闭预算源将实时影响竞价与填充</div></div><button class="btn btn-primary btn-sm spacer" onclick="openBudgetModal()"><i class="ri-add-line"></i> 接入预算源</button></div>
+        <div class="table-wrap"><table class="data"><thead><tr><th>预算源</th><th>类型</th><th>状态</th><th>填充率</th><th>eCPM(¥)</th><th>日消耗(¥)</th><th>占比</th><th>操作</th></tr></thead><tbody id="budgetBody"></tbody></table></div>
+      </section>
+
+      <!-- ============ AI CREATIVE PRODUCTION ============ -->
+      <section class="view" id="v-creative">
+        <div class="promo">
+          <div class="promo-ic"><i class="ri-magic-line"></i></div>
+          <div class="promo-tx"><b>AI 素材生产 · 从创意到投放提效</b><span>AI 辅助完成洞察、文案、素材生成、多尺寸适配与投放测试，加快素材迭代。</span></div>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi"><div class="top"><span class="ki t-indigo"><i class="ri-rocket-2-line"></i></span><span class="chg up"><i class="ri-arrow-up-line"></i></span></div><div class="val">+60%</div><div class="lbl">素材效率提升</div></div>
+          <div class="kpi"><div class="top"><span class="ki t-green"><i class="ri-timer-flash-line"></i></span></div><div class="val">-50%</div><div class="lbl">测试周期缩短</div></div>
+          <div class="kpi"><div class="top"><span class="ki t-cyan"><i class="ri-stack-line"></i></span></div><div class="val">10+</div><div class="lbl">多版本覆盖</div></div>
+          <div class="kpi"><div class="top"><span class="ki t-amber"><i class="ri-image-2-line"></i></span></div><div class="val" id="cvCount">0</div><div class="lbl">本月已生成素材</div></div>
+        </div>
+        <div class="panel">
+          <div class="panel-h"><div><h3>生产流水线</h3><div class="sub">洞察 → 生成 → 适配 → 投放 → 回流优化</div></div></div>
+          <div class="pipe" id="pipe"></div>
+        </div>
+        <div class="toolbar"><div><b style="font-size:15px">素材工作台</b><div class="sub" style="color:var(--ink-dim);font-size:13px">用 AI 一键生成多尺寸投放素材</div></div><button class="btn btn-primary btn-sm spacer" onclick="openGenModal()"><i class="ri-sparkling-fill"></i> AI 生成素材</button></div>
+        <div class="rv-grid" id="creativeGrid"></div>
       </section>
 
       <!-- ============ BILLING ============ -->

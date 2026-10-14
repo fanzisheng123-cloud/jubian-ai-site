@@ -1,4 +1,4 @@
-/* ================= 聚变 JuBian AI · 控制台逻辑 ================= */
+/* ================= Almore · 控制台逻辑 ================= */
 const user = Auth.require();
 if (user) {
   document.getElementById('uName').textContent = user.name || '开发者';
@@ -69,7 +69,7 @@ let reportRows = [];
 })();
 
 /* ---------- View switching ---------- */
-const titles = { overview: '数据概览', reports: '收益报表', channels: '变现渠道', apps: '应用与广告位', strategy: '竞价策略', audience: '人群与意图', review: 'AI 物料审核', orders: '商单市场', messages: '消息中心', billing: '结算中心', settings: '账户设置' };
+const titles = { overview: '数据概览', reports: '收益报表', channels: '变现渠道', apps: '应用与广告位', budget: '聚合预算池', strategy: '竞价策略', audience: '人群与意图', creative: 'AI 素材生产', review: 'AI 物料审核', orders: '商单市场', messages: '消息中心', billing: '结算中心', settings: '账户设置' };
 let charts = {};
 document.querySelectorAll('.side-link').forEach(link => {
   link.addEventListener('click', () => {
@@ -89,8 +89,10 @@ function onView(v) {
   if (v === 'reports') renderReports();
   if (v === 'channels') renderChannels();
   if (v === 'apps') renderApps();
+  if (v === 'budget') renderBudget();
   if (v === 'strategy') renderStrategy();
   if (v === 'audience') renderAudience();
+  if (v === 'creative') renderCreative();
   if (v === 'review') renderReview();
   if (v === 'orders') renderOrders();
   if (v === 'messages') renderMessages();
@@ -692,6 +694,96 @@ function dealOrder(id) {
   if (activeChat === id) renderRoom();
   renderMessages(); renderOrders();
 }
+/* ---------- Budget Pool ---------- */
+let budgets = [
+  { id: 1, name: '穿山甲 Pangle', type: '广告预算', on: true, fill: 98.4, ecpm: 46.2, spend: 28640, tint: 't-indigo' },
+  { id: 2, name: '优量汇', type: '广告预算', on: true, fill: 97.6, ecpm: 41.7, spend: 22180, tint: 't-cyan' },
+  { id: 3, name: 'imobi', type: '海外预算', on: true, fill: 95.2, ecpm: 38.9, spend: 15340, tint: 't-violet' },
+  { id: 4, name: '百度预算池', type: '生态预算', on: true, fill: 99.1, ecpm: 44.5, spend: 24860, tint: 't-green' },
+  { id: 5, name: '直签客户', type: '直签预算', on: true, fill: 100, ecpm: 52.0, spend: 12420, tint: 't-amber' },
+  { id: 6, name: '快手联盟', type: '广告预算', on: false, fill: 93.0, ecpm: 33.1, spend: 0, tint: 't-rose' }
+];
+function renderBudget() {
+  const on = budgets.filter(b => b.on);
+  document.getElementById('bpTotal').textContent = on.length;
+  document.getElementById('bpRev').textContent = '¥' + on.reduce((s, b) => s + b.spend, 0).toLocaleString();
+  const total = on.reduce((s, b) => s + b.spend, 0) || 1;
+  document.getElementById('budgetBody').innerHTML = budgets.map(b => {
+    const pct = b.on ? (b.spend / total * 100).toFixed(1) : '0.0';
+    return '<tr><td><div class="cell-app"><span class="ax ' + b.tint + '" style="color:#fff">' + b.name.charAt(0) + '</span>' + b.name + '</div></td>' +
+      '<td>' + b.type + '</td>' +
+      '<td><label class="switch"><input type="checkbox" ' + (b.on ? 'checked' : '') + ' onchange="toggleBudget(' + b.id + ',this.checked)"><span class="sl"></span></label></td>' +
+      '<td>' + b.fill + '%</td><td>¥' + b.ecpm.toFixed(1) + '</td><td class="' + (b.spend ? 'pos' : '') + '">¥' + b.spend.toLocaleString() + '</td><td>' + pct + '%</td>' +
+      '<td><div class="row-act"><button title="删除" onclick="delBudget(' + b.id + ')"><i class="ri-delete-bin-line"></i></button></div></td></tr>';
+  }).join('');
+  const data = on.length ? on : budgets.slice(0, 1);
+  if (charts.budget) charts.budget.destroy();
+  charts.budget = new Chart(document.getElementById('budgetChart'), {
+    type: 'doughnut',
+    data: { labels: data.map(b => b.name), datasets: [{ data: data.map(b => b.spend || 1), backgroundColor: ['#2b6cf6', '#06a7ff', '#1e50c8', '#14b8a6', '#f59e0b', '#e11d48'], borderWidth: 0 }] },
+    options: { responsive: true, maintainAspectRatio: false, cutout: '62%', plugins: { legend: { position: 'right', labels: { usePointStyle: true, boxWidth: 8, padding: 10 } } } }
+  });
+}
+function toggleBudget(id, on) { const b = budgets.find(x => x.id === id); b.on = on; if (!on) b.spend = 0; else b.spend = rnd(8000, 26000); renderBudget(); toast((on ? '已接入 ' : '已停用 ') + b.name, on ? 'ok' : 'warn'); }
+function delBudget(id) { const b = budgets.find(x => x.id === id); budgets = budgets.filter(x => x.id !== id); renderBudget(); toast('已移除预算源「' + b.name + '」', 'warn'); }
+function openBudgetModal() {
+  openModal('接入预算源',
+    '<div class="form-row"><label>预算源名称</label><input id="nbName" placeholder="如 AppLovin / Mintegral" /></div>' +
+    '<div class="form-row"><label>预算类型</label><select id="nbType"><option>广告预算</option><option>海外预算</option><option>生态预算</option><option>直签预算</option></select></div>',
+    '<button class="btn btn-ghost btn-sm" onclick="closeModal()">取消</button><button class="btn btn-primary btn-sm" onclick="addBudget()">确认接入</button>');
+}
+function addBudget() {
+  const name = document.getElementById('nbName').value.trim(); if (!name) { toast('请填写名称', 'warn'); return; }
+  budgets.push({ id: Date.now(), name, type: document.getElementById('nbType').value, on: true, fill: +(93 + Math.random() * 6).toFixed(1), ecpm: rnd(28, 50), spend: rnd(6000, 20000), tint: ['t-indigo', 't-cyan', 't-violet', 't-green', 't-amber'][rnd(0, 4)] });
+  closeModal(); renderBudget(); toast('预算源「' + name + '」已接入，竞价规模已扩大');
+}
+
+/* ---------- AI Creative Production ---------- */
+const pipeSteps = [
+  { no: '01', tint: 't-indigo', ic: 'ri-lightbulb-flash-line', t: '创意洞察', items: ['热门题材', '卖点提炼'] },
+  { no: '02', tint: 't-cyan', ic: 'ri-edit-2-line', t: '文案脚本', items: ['标题', '卖点', 'CTA'] },
+  { no: '03', tint: 't-violet', ic: 'ri-image-add-line', t: '素材生成', items: ['Banner', '信息流图', '开屏', '激励视频封面'] },
+  { no: '04', tint: 't-green', ic: 'ri-crop-line', t: '多尺寸适配', items: ['横版', '竖版', '方图'] },
+  { no: '05', tint: 't-amber', ic: 'ri-line-chart-line', t: '投放优化', items: ['A/B 测试', 'CTR / eCPM', '反馈迭代'] }
+];
+let creatives = [
+  { id: 1, title: '去看更大的世界', app: '网盘会员', type: '开屏', size: '竖版 1080×1920', status: 'live', score: 94 },
+  { id: 2, title: 'AI 让想象发生 · 探索未来游戏世界', app: '游戏 / AI App', type: '信息流', size: '方图 1200×1200', score: 91, status: 'live' },
+  { id: 3, title: '观看视频，解锁好礼', app: '休闲工具', type: '激励视频封面', size: '竖版 720×1280', score: 88, status: 'draft' },
+  { id: 4, title: '精彩短剧，一键续看', app: '短剧', type: '贴片', size: '横版 1280×720', score: 90, status: 'draft' }
+];
+function renderCreative() {
+  document.getElementById('cvCount').textContent = (1200 + creatives.length);
+  document.getElementById('pipe').innerHTML = pipeSteps.map((p, i) =>
+    '<div class="pipe-step"><div class="pn">' + p.no + '</div><div class="pic ' + p.tint + '"><i class="' + p.ic + '"></i></div><h4>' + p.t + '</h4><ul>' + p.items.map(x => '<li>' + x + '</li>').join('') + '</ul></div>' +
+    (i < pipeSteps.length - 1 ? '<i class="ri-arrow-right-line pipe-arrow"></i>' : '')).join('');
+  renderCreativeGrid();
+}
+function renderCreativeGrid() {
+  document.getElementById('creativeGrid').innerHTML = creatives.map(c => {
+    const badge = c.status === 'live' ? '<span class="rv-verdict pass"><i class="ri-send-plane-fill"></i> 已投放</span>' : '<span class="rv-verdict pending"><i class="ri-draft-line"></i> 草稿</span>';
+    return '<div class="rv-card"><div class="rv-thumb"><img src="https://picsum.photos/seed/cv' + c.id + '/500/300" alt="' + c.app + '" /><span class="rv-type">' + c.type + '</span><span class="rv-score">AI ' + c.score + '</span></div>' +
+      '<div class="rv-body"><div class="rv-title">' + c.title + '</div><div class="rv-app">' + c.app + ' · ' + c.size + '</div>' + badge +
+      '<div class="rv-acts"><button class="ok" onclick="toast(\'已发布到投放：' + c.title + '\')"><i class="ri-send-plane-line"></i>投放</button>' +
+      '<button class="rc" onclick="toast(\'已复制一版，可继续适配尺寸\')"><i class="ri-file-copy-line"></i>多尺寸</button>' +
+      '<button class="rc" onclick="delCreative(' + c.id + ')"><i class="ri-delete-bin-line"></i></button></div></div></div>';
+  }).join('');
+}
+function delCreative(id) { creatives = creatives.filter(x => x.id !== id); renderCreativeGrid(); toast('已删除素材', 'warn'); }
+function openGenModal() {
+  openModal('AI 生成素材',
+    '<div class="form-row"><label>投放主题 / 题材</label><input id="gcTopic" placeholder="如 网盘会员促销 / 短剧续看" /></div>' +
+    '<div class="form-2"><div class="form-row"><label>广告位</label><select id="gcType"><option>开屏</option><option>信息流</option><option>激励视频封面</option><option>贴片</option><option>Banner</option></select></div>' +
+    '<div class="form-row"><label>尺寸</label><select id="gcSize"><option>竖版 1080×1920</option><option>方图 1200×1200</option><option>横版 1280×720</option></select></div></div>' +
+    '<div class="form-row"><label>卖点 / CTA</label><input id="gcSell" placeholder="如 超大空间 极速下载 · 立即开通" /></div>',
+    '<button class="btn btn-ghost btn-sm" onclick="closeModal()">取消</button><button class="btn btn-primary btn-sm" onclick="doGen()"><i class="ri-sparkling-fill"></i> 生成</button>');
+}
+function doGen() {
+  const topic = document.getElementById('gcTopic').value.trim(); if (!topic) { toast('请填写投放主题', 'warn'); return; }
+  creatives.unshift({ id: Date.now(), title: topic, app: 'AI 生成', type: document.getElementById('gcType').value, size: document.getElementById('gcSize').value, score: rnd(85, 97), status: 'draft' });
+  closeModal(); renderCreative(); toast('AI 已生成素材草稿「' + topic + '」');
+}
+
 /* ---------- Init ---------- */
 renderOverview();
 
