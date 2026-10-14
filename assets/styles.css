@@ -895,3 +895,82 @@ body { background:
   background: linear-gradient(165deg, #ffffff 0%, #eef4fe 100%); }
 .scn-slots span { background: linear-gradient(165deg, #ffffff, #e9f0fb); }
 
+/* ====================================================================
+   REFERENCE-STYLE DESIGN SYSTEM (复刻参考图)
+   ==================================================================== */
+/* 极光 + 波浪 + 点阵 + 悬浮球 背景 */
+.band { background: linear-gradient(180deg, #eef4ff 0%, #f3f8ff 100%); }
+.band.alt { background: linear-gradient(180deg, #e9f2ff 0%, #e9f4f4 100%); }
+.band::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+   radial-gradient(40% 60% at 85% 8%, rgba(43,108,246,.14), transparent 60%),
+   radial-gradient(36% 50% at 10% 92%, rgba(20,184,166,.12), transparent 60%); filter: none; width: auto; height: auto; border-radius: 0; }
+/* 流动波浪线 */
+.band::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 220px; z-index: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='220' viewBox='0 0 1600 220'%3E%3Cg fill='none' stroke='%232b6cf6' stroke-opacity='.08' stroke-width='2'%3E%3Cpath d='M0 160 C 300 90 600 220 900 150 S 1400 90 1600 150'/%3E%3Cpath d='M0 190 C 320 120 640 240 960 175 S 1420 120 1600 180'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover; background-position: bottom; left: auto; width: auto; border-radius: 0; }
+/* 角落点阵 + 悬浮球 装饰 */
+.deco { position: absolute; z-index: 0; pointer-events: none; }
+.deco-dots { width: 120px; height: 70px; background-image: radial-gradient(rgba(43,108,246,.25) 2px, transparent 2px); background-size: 16px 16px; opacity: .6; }
+.deco-ball { border-radius: 50%; background: radial-gradient(circle at 32% 28%, #ffffff, #cfe0ff 55%, #a9c6ff); box-shadow: 0 18px 36px -14px rgba(43,108,246,.5); }
+.deco-ball.b1 { width: 46px; height: 46px; } .deco-ball.b2 { width: 26px; height: 26px; opacity: .85; } .deco-ball.b3 { width: 64px; height: 64px; opacity: .7; }
+
+/* 玻璃质感 3D 图标磁贴（近似参考图插画） */
+.illu { position: relative; width: 100%; height: 108px; display: grid; place-items: center; margin-bottom: 6px; }
+.illu .tile { width: 72px; height: 72px; border-radius: 20px; display: grid; place-items: center; color: #fff; font-size: 34px; position: relative; z-index: 1;
+  background: linear-gradient(150deg, var(--brand) 0%, var(--brand-2) 100%);
+  box-shadow: 0 18px 30px -12px rgba(43,108,246,.55), inset 0 2px 6px rgba(255,255,255,.55), inset 0 -8px 14px rgba(0,0,0,.08);
+  transform: rotate(-6deg); }
+.illu .tile.g { background: linear-gradient(150deg, #10b981, #06b6a4); box-shadow: 0 18px 30px -12px rgba(16,185,129,.5), inset 0 2px 6px rgba(255,255,255,.55); }
+.illu .tile.v { background: linear-gradient(150deg, #6366f1, #4f46e5); box-shadow: 0 18px 30px -12px rgba(99,102,241,.5), inset 0 2px 6px rgba(255,255,255,.55); }
+.illu .tile.a { background: linear-gradient(150deg, #f59e0b, #f97316); box-shadow: 0 18px 30px -12px rgba(245,158,11,.5), inset 0 2px 6px rgba(255,255,255,.55); }
+.illu::after { content: ""; position: absolute; bottom: 8px; width: 86px; height: 16px; border-radius: 50%; background: radial-gradient(ellipse, rgba(43,108,246,.28), transparent 70%); }
+.illu .orb { position: absolute; border-radius: 50%; background: radial-gradient(circle at 32% 28%, #fff, #bcd3ff); box-shadow: 0 6px 12px -4px rgba(43,108,246,.5); z-index: 2; }
+.illu .orb.o1 { width: 14px; height: 14px; top: 14px; right: 30%; } .illu .orb.o2 { width: 9px; height: 9px; bottom: 24px; left: 30%; }
+.illu .ring { position: absolute; width: 96px; height: 96px; border: 1.5px dashed rgba(43,108,246,.3); border-radius: 50%; transform: rotate(18deg); z-index: 0; }
+
+/* 渐变进度条（卡片底部签名元素） */
+.pbar { height: 6px; border-radius: 999px; background: rgba(43,108,246,.12); overflow: hidden; margin-top: 16px; }
+.pbar > span { display: block; height: 100%; width: 42%; border-radius: 999px; background: linear-gradient(90deg, var(--brand), var(--brand-2)); }
+.pbar.g > span { background: linear-gradient(90deg, #10b981, #06b6a4); }
+.pbar.v > span { background: linear-gradient(90deg, #6366f1, #4f46e5); }
+.pbar.a > span { background: linear-gradient(90deg, #f59e0b, #f97316); }
+
+/* 环形 chevron 连接符 */
+.conn { align-self: center; flex: none; width: 34px; height: 34px; border-radius: 50%; background: var(--surface); border: 1px solid var(--line-2); display: grid; place-items: center; color: var(--brand); font-size: 18px; box-shadow: var(--shadow-sm); position: relative; z-index: 2; }
+
+/* 资源位 pill（场景卡） */
+.res-pill { display: flex; align-items: center; justify-content: space-between; padding: 11px 14px; border-radius: 11px; background: linear-gradient(165deg,#ffffff,#eef4fe); border: 1px solid var(--line); font-size: 14px; font-weight: 600; color: var(--ink-soft); transition: border-color .2s, color .2s, transform .2s; cursor: default; }
+.res-pill i { color: var(--ink-dim); font-size: 16px; }
+.res-pill:hover { border-color: var(--brand); color: var(--brand); transform: translateX(2px); }
+.res-pill:hover i { color: var(--brand); }
+
+/* flow-step 复刻 */
+.flow-step { position: relative; padding: 20px 18px 18px; border-radius: 20px; background: rgba(255,255,255,.72) !important; backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.9); box-shadow: 0 20px 40px -24px rgba(24,39,75,.3); }
+.flow-step .fs-no { display: inline-grid; place-items: center; width: 40px; height: 32px; border-radius: 10px; font-size: 15px; font-weight: 800; color: var(--brand); background: rgba(43,108,246,.12); margin: 0 0 2px; letter-spacing: .04em; }
+.flow-step h3 { font-size: 17px; margin: 8px 0 12px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.flow-loop { background: rgba(255,255,255,.7); backdrop-filter: blur(6px); }
+
+/* why-almore 卡片复刻（加插画+进度条） */
+.fcard { position: relative; padding: 26px 24px 22px; border-radius: 20px; background: rgba(255,255,255,.72) !important; backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.9); box-shadow: 0 20px 40px -24px rgba(24,39,75,.28); }
+.fcard .fic { box-shadow: 0 10px 20px -10px rgba(43,108,246,.45), inset 0 2px 5px rgba(255,255,255,.5); }
+
+/* 玻璃卡统一：场景/步骤/方案/数据/面板 */
+.scn, .step, .plan { background: rgba(255,255,255,.74) !important; backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.9); box-shadow: 0 20px 40px -24px rgba(24,39,75,.28); border-radius: 20px; }
+
+/* 场景卡复刻：顶部插画 + 资源位 pill */
+.scn .scn-illu { height: 118px; }
+.scn-slots { gap: 10px; }
+.scn-sum > div { background: rgba(255,255,255,.74) !important; backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.9); }
+
+/* 实施步骤复刻：编号徽标 + 插画 + 时间 pill */
+.step { position: relative; padding: 22px 18px 20px; }
+.step .sn { display: inline-grid; place-items: center; width: 42px; height: 34px; border-radius: 10px; font-size: 16px; font-weight: 800; color: var(--brand); background: rgba(43,108,246,.12); -webkit-text-fill-color: var(--brand); margin-bottom: 10px; }
+.step h3 { font-size: 16px; }
+
+/* 合作模式复刻：flow 盒 + 勾选圈 */
+.plan { padding: 30px 26px; }
+.mode-flow { background: linear-gradient(165deg,#f6f9ff,#eef4fe); border: 1px dashed var(--line-2); border-radius: 14px; padding: 14px; }
+.plan ul li i { background: rgba(16,185,129,.14); border-radius: 50%; padding: 2px; }
+.cta-box { backdrop-filter: blur(6px); }
+
