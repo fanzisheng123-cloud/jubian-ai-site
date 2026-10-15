@@ -10,6 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;800&display=swap" rel="stylesheet" />
 <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
 <link href="assets/styles.css?v=8" rel="stylesheet" />
+<link href="assets/reference.css?v=10" rel="stylesheet" />
 </head>
 <body>
 <!-- ============ Header ============ -->
@@ -22,10 +23,11 @@
     <div class="nav-links" id="navlinks">
       <a href="#features">为什么 Almore</a>
       <a href="#overview">平台总览</a>
-      <a href="#scenes">场景矩阵</a>
       <a href="#scenes">场景与资源位</a>
       <a href="#pricing">合作模式</a>
       <a href="#faq">常见问题</a>
+      <a class="nav-mobile-only" href="login.html">登录控制台</a>
+      <a class="nav-mobile-only" href="login.html?tab=register">免费接入</a>
     </div>
     <div class="nav-cta">
       <a href="login.html" class="btn btn-ghost btn-sm"><i class="ri-user-line"></i> 登录</a>
@@ -90,43 +92,19 @@
 </section>
 
 <!-- ============ Why Almore ============ -->
-<section class="band alt" id="features">
-  <div class="wrap">
-    <div class="section-head center reveal">
-      <span class="eyebrow">Why Almore</span>
-      <h2 class="section-title">为什么是 Almore —— <br /><span class="grad-text">不只是广告接入</span></h2>
-      <p class="section-sub">基于百度网盘验证过的广告变现能力，面向 AI 开发者与多场景客户，提供聚合预算、智能竞价、数据中台与运营服务的一站式解决方案。</p>
-    </div>
-    <div class="feature-grid">
-      <div class="fcard reveal"><div class="fic t-indigo"><i class="ri-line-chart-line"></i></div><h3>已验证的高变现能力</h3><p>网盘广告产品积累深厚，持续探索小说、短剧、工具、硬广、游戏等场景的商业化。</p><div class="pbar"><span></span></div></div>
-      <div class="fcard reveal"><div class="fic t-cyan"><i class="ri-stack-line"></i></div><h3>百度生态一站式能力</h3><p>覆盖预算、DSP、流量、数据、模型、运营与客户服务，一个平台打通商业化全链路。</p><div class="pbar"><span style="width:62%"></span></div></div>
-      <div class="fcard reveal"><div class="fic t-green"><i class="ri-shield-check-line"></i></div><h3>透明可信</h3><p>不扣量、不隐藏收入数据，支持多维度校验经营结果，数据实时、可验、可预测。</p><div class="pbar g"><span style="width:72%"></span></div></div>
-      <div class="fcard reveal"><div class="fic t-violet"><i class="ri-rocket-2-line"></i></div><h3>AI 时代新机会</h3><p>为 AI 开发者提供更快接入、更稳收益、更强增长空间，从流量接入走向增长伙伴。</p><div class="pbar v"><span style="width:84%"></span></div></div>
-    </div>
+<section class="reference-section" id="features" aria-label="为什么是 Almore">
+  <div class="reference-stage" tabindex="0" aria-label="横向浏览为什么是 Almore 完整方案图">
+    <img src="assets/ppt/why-almore.jpeg" loading="lazy" decoding="async" alt="为什么是 Almore：百度生态能力、AI 驱动增长、多场景商业化与开放共赢" />
   </div>
+  <div class="reference-details"><h2>为什么是 Almore</h2><p>基于百度网盘验证过的广告变现能力，为 AI 开发者提供百度生态一站式能力、透明可信的数据和持续增长空间。</p><ul><li>已验证的高变现能力</li><li>百度生态一站式能力</li><li>透明可信</li><li>AI 时代新机会</li></ul></div>
 </section>
 
 <!-- ============ Platform Overview (full-link) ============ -->
-<section class="band" id="overview">
-  <div class="wrap">
-    <div class="section-head center reveal">
-      <span class="eyebrow">Solution</span>
-      <h2 class="section-title">平台总览：<span class="grad-text">从流量接入到收入增长的全链路</span></h2>
-      <p class="section-sub">围绕流量接入、预算聚合、智能竞价、数据中台与 AI 服务，形成可持续优化的商业化闭环。</p>
-    </div>
-    <div class="flow">
-      <div class="flow-step reveal"><span class="fs-no">01</span><div class="illu"><span class="ring"></span><span class="tile"><i class="ri-apps-2-line"></i></span><span class="orb o1"></span><span class="orb o2"></span></div><h3>流量场景</h3><ul><li>网盘</li><li>小说</li><li>短剧</li><li>工具</li><li>游戏 / AI App</li></ul><div class="pbar"><span></span></div></div>
-      <div class="conn"><i class="ri-arrow-right-s-line"></i></div>
-      <div class="flow-step reveal"><span class="fs-no">02</span><div class="illu"><span class="ring"></span><span class="tile"><i class="ri-database-2-line"></i></span><span class="orb o1"></span><span class="orb o2"></span></div><h3>聚合预算池</h3><ul><li>多 DSP</li><li>直签客户</li><li>百度生态预算</li><li>预算聚合</li></ul><div class="pbar"><span style="width:58%"></span></div></div>
-      <div class="conn"><i class="ri-arrow-right-s-line"></i></div>
-      <div class="flow-step reveal"><span class="fs-no">03</span><div class="illu"><span class="ring"></span><span class="tile v"><i class="ri-cpu-line"></i></span><span class="orb o1"></span><span class="orb o2"></span></div><h3>智能竞价</h3><ul><li>Bidding</li><li>Waterfall</li><li>实时路由</li><li>AI 调优</li></ul><div class="pbar v"><span style="width:66%"></span></div></div>
-      <div class="conn"><i class="ri-arrow-right-s-line"></i></div>
-      <div class="flow-step reveal"><span class="fs-no">04</span><div class="illu"><span class="ring"></span><span class="tile g"><i class="ri-dashboard-3-line"></i></span><span class="orb o1"></span><span class="orb o2"></span></div><h3>数据中台</h3><ul><li>实时看板</li><li>可验数据</li><li>收入预测</li><li>经营分析</li></ul><div class="pbar g"><span style="width:74%"></span></div></div>
-      <div class="conn"><i class="ri-arrow-right-s-line"></i></div>
-      <div class="flow-step reveal"><span class="fs-no">05</span><div class="illu"><span class="ring"></span><span class="tile a"><i class="ri-funds-line"></i></span><span class="orb o1"></span><span class="orb o2"></span></div><h3>收益增长</h3><ul><li>填充率提升</li><li>eCPM 提升</li><li>收入增长</li><li>LTV 提升</li></ul><div class="pbar a"><span style="width:88%"></span></div></div>
-    </div>
-    <div class="flow-loop reveal"><i class="ri-refresh-line"></i> 数据回流 → 策略优化 → 收益提升，形成可持续增长闭环</div>
+<section class="reference-section" id="overview" aria-label="平台总览">
+  <div class="reference-stage" tabindex="0" aria-label="横向浏览平台全链路完整方案图">
+    <img src="assets/ppt/platform-overview.jpeg" loading="lazy" decoding="async" alt="平台总览：流量场景、聚合预算池、智能竞价、数据中台与收益增长全链路" />
   </div>
+  <div class="reference-details"><h2>从流量接入到收入增长的全链路</h2><ol><li>流量场景</li><li>聚合预算池</li><li>智能竞价</li><li>数据中台</li><li>收益增长</li></ol><p>数据回流、策略优化与收益提升形成持续商业化闭环。</p></div>
 </section>
 <!-- ============ Engine ============ -->
 <section class="band" id="engine">
@@ -198,113 +176,25 @@
   </div>
 </section>
 <!-- ============ Scenario Matrix ============ -->
-<section class="band alt" id="scenes">
-  <div class="wrap">
-    <div class="section-head center reveal">
-      <span class="eyebrow">Scenario Matrix</span>
-      <h2 class="section-title">场景矩阵：<span class="grad-text">多场景流量接入与广告位商业化</span></h2>
-      <p class="section-sub">覆盖网盘、小说、短剧、工具、游戏与 AI 应用，支持多样广告位与商业化组合。</p>
-    </div>
-    <div class="scn-grid">
-      <div class="scn reveal">
-        <div class="illu scn-illu"><span class="ring"></span><span class="tile"><i class="ri-cloud-line"></i></span><span class="orb o1"></span><span class="orb o2"></span></div>
-        <div class="scn-head"><span class="scn-ic t-cyan"><i class="ri-cloud-line"></i></span><div><h3>网盘</h3><p>海量存储，高频使用</p></div></div>
-        <div class="scn-slots"><span class="res-pill">开屏 <i class="ri-arrow-right-s-line"></i></span><span class="res-pill">激励视频 <i class="ri-arrow-right-s-line"></i></span><span class="res-pill">下载前贴片 <i class="ri-arrow-right-s-line"></i></span></div>
-      </div>
-      <div class="scn reveal">
-        <div class="illu scn-illu"><span class="ring"></span><span class="tile g"><i class="ri-book-open-line"></i></span><span class="orb o1"></span><span class="orb o2"></span></div>
-        <div class="scn-head"><span class="scn-ic t-green"><i class="ri-book-open-line"></i></span><div><h3>小说</h3><p>沉浸阅读，长时在线</p></div></div>
-        <div class="scn-slots"><span class="res-pill">章中 Banner <i class="ri-arrow-right-s-line"></i></span><span class="res-pill">续看弹窗 <i class="ri-arrow-right-s-line"></i></span><span class="res-pill">信息流 <i class="ri-arrow-right-s-line"></i></span></div>
-      </div>
-      <div class="scn reveal">
-        <div class="illu scn-illu"><span class="ring"></span><span class="tile v"><i class="ri-play-circle-line"></i></span><span class="orb o1"></span><span class="orb o2"></span></div>
-        <div class="scn-head"><span class="scn-ic t-indigo"><i class="ri-play-circle-line"></i></span><div><h3>短剧</h3><p>碎片化娱乐，快速增长</p></div></div>
-        <div class="scn-slots"><span class="res-pill">开屏 <i class="ri-arrow-right-s-line"></i></span><span class="res-pill">贴片 <i class="ri-arrow-right-s-line"></i></span><span class="res-pill">激励解锁 <i class="ri-arrow-right-s-line"></i></span></div>
-      </div>
-      <div class="scn reveal">
-        <div class="illu scn-illu"><span class="ring"></span><span class="tile v"><i class="ri-tools-line"></i></span><span class="orb o1"></span><span class="orb o2"></span></div>
-        <div class="scn-head"><span class="scn-ic t-violet"><i class="ri-tools-line"></i></span><div><h3>工具</h3><p>高频刚需，场景多样</p></div></div>
-        <div class="scn-slots"><span class="res-pill">信息流 <i class="ri-arrow-right-s-line"></i></span><span class="res-pill">插屏 <i class="ri-arrow-right-s-line"></i></span><span class="res-pill">原生推荐 <i class="ri-arrow-right-s-line"></i></span></div>
-      </div>
-      <div class="scn reveal">
-        <div class="illu scn-illu"><span class="ring"></span><span class="tile a"><i class="ri-gamepad-line"></i></span><span class="orb o1"></span><span class="orb o2"></span></div>
-        <div class="scn-head"><span class="scn-ic t-amber"><i class="ri-gamepad-line"></i></span><div><h3>游戏 / AI App</h3><p>互动性强，用户价值高</p></div></div>
-        <div class="scn-slots"><span class="res-pill">开屏 <i class="ri-arrow-right-s-line"></i></span><span class="res-pill">信息流 <i class="ri-arrow-right-s-line"></i></span><span class="res-pill">激励视频 <i class="ri-arrow-right-s-line"></i></span></div>
-      </div>
-    </div>
-    <div class="scn-sum">
-      <div class="reveal"><i class="ri-focus-2-line"></i><div><b>广告位适配强</b><span>支持多种广告形式与灵活组合</span></div></div>
-      <div class="reveal"><i class="ri-bar-chart-grouped-line"></i><div><b>场景覆盖广</b><span>覆盖多行业多类型应用场景</span></div></div>
-      <div class="reveal"><i class="ri-stack-line"></i><div><b>收益组合更灵活</b><span>满足不同场景的商业化目标</span></div></div>
-    </div>
+<section class="reference-section" id="scenes" aria-label="场景与资源位">
+  <div class="reference-stage" tabindex="0" aria-label="横向浏览场景与广告资源位完整方案图">
+    <img src="assets/ppt/scenario-matrix.jpeg" loading="lazy" decoding="async" alt="场景矩阵：网盘、小说、短剧、工具、游戏与 AI App 的开屏、信息流、插屏、贴片和激励视频资源位" />
   </div>
+  <div class="reference-details"><h2>多场景流量接入与广告位商业化</h2><ul><li>网盘：开屏、激励视频、下载前贴片</li><li>小说：章中 Banner、续看弹窗、信息流</li><li>短剧：开屏、贴片、激励解锁</li><li>工具：信息流、插屏、原生推荐</li><li>游戏与 AI App：开屏、信息流、激励视频</li></ul></div>
 </section>
 <!-- ============ Implementation path ============ -->
-<section class="band" id="steps">
-  <div class="wrap">
-    <div class="section-head center reveal">
-      <span class="eyebrow">Implementation</span>
-      <h2 class="section-title">实施路径：<span class="grad-text">从合作确认到收益增长</span></h2>
-      <p class="section-sub">以低成本、短周期、可验证为目标，帮助客户快速完成商务、技术、数据与运营落地。</p>
-    </div>
-    <div class="steps steps-6">
-      <div class="step reveal"><div class="sn">01</div><div class="illu" style="height:84px"><span class="tile" style="width:56px;height:56px;font-size:26px"><i class="ri-shake-hands-line"></i></span></div><h3>合作确认</h3><p>商务模式、目标设定</p><span class="step-day"><i class="ri-time-line"></i> 1~2 天</span></div>
-      <div class="step reveal"><div class="sn">02</div><div class="illu" style="height:84px"><span class="tile" style="width:56px;height:56px;font-size:26px"><i class="ri-code-box-line"></i></span></div><h3>技术对接</h3><p>SDK / API / 广告位梳理</p><span class="step-day"><i class="ri-time-line"></i> 1~3 天</span></div>
-      <div class="step reveal"><div class="sn">03</div><div class="illu" style="height:84px"><span class="tile v" style="width:56px;height:56px;font-size:26px"><i class="ri-test-tube-line"></i></span></div><h3>联调测试</h3><p>请求、填充、回传、验收</p><span class="step-day"><i class="ri-time-line"></i> 3~7 天</span></div>
-      <div class="step reveal"><div class="sn">04</div><div class="illu" style="height:84px"><span class="tile g" style="width:56px;height:56px;font-size:26px"><i class="ri-upload-cloud-2-line"></i></span></div><h3>灰度上线</h3><p>小流量验证、问题排查</p><span class="step-day"><i class="ri-time-line"></i> 3~7 天</span></div>
-      <div class="step reveal"><div class="sn">05</div><div class="illu" style="height:84px"><span class="tile a" style="width:56px;height:56px;font-size:26px"><i class="ri-line-chart-line"></i></span></div><h3>全量放量</h3><p>预算扩容、策略生效</p><span class="step-day"><i class="ri-time-line"></i> 7~14 天</span></div>
-      <div class="step reveal"><div class="sn">06</div><div class="illu" style="height:84px"><span class="tile" style="width:56px;height:56px;font-size:26px"><i class="ri-settings-4-line"></i></span></div><h3>持续优化</h3><p>数据复盘、收益提升</p><span class="step-day"><i class="ri-infinity-line"></i> 长期迭代</span></div>
-    </div>
+<section class="reference-section" id="steps" aria-label="实施路径">
+  <div class="reference-stage" tabindex="0" aria-label="横向浏览实施路径完整方案图">
+    <img src="assets/ppt/implementation.jpeg" loading="lazy" decoding="async" alt="实施路径：合作确认、技术对接、联调测试、灰度上线、全量放量与持续优化" />
   </div>
+  <div class="reference-details"><h2>从合作确认到收益增长</h2><ol><li>合作确认，1 至 2 天</li><li>技术对接，1 至 3 天</li><li>联调测试，3 至 7 天</li><li>灰度上线，3 至 7 天</li><li>全量放量，7 至 14 天</li><li>持续优化，长期迭代</li></ol></div>
 </section>
 <!-- ============ Cooperation modes ============ -->
-<section class="band alt" id="pricing">
-  <div class="wrap">
-    <div class="section-head center reveal">
-      <span class="eyebrow">Cooperation</span>
-      <h2 class="section-title">合作模式：<span class="grad-text">灵活接入，共建长期增长</span></h2>
-      <p class="section-sub">根据客户接入深度与预算协同方式，提供灵活的合作组合与服务支持。</p>
-    </div>
-    <div class="price-grid">
-      <div class="plan reveal">
-        <span class="mode-no">模式一</span>
-        <h3>全托管合作</h3>
-        <p class="desc">适合冷启动客户，快速接入、降低运营成本。</p>
-        <div class="mode-flow">客户流量 <i class="ri-arrow-right-line"></i> 预算走 Almore <i class="ri-arrow-right-line"></i> DSP 竞价 + 订阅服务</div>
-        <ul>
-          <li><i class="ri-checkbox-circle-fill"></i>快速接入，快速上线对接</li>
-          <li><i class="ri-checkbox-circle-fill"></i>降低运营成本，减少人力投入</li>
-          <li><i class="ri-checkbox-circle-fill"></i>适用：工具 / 内容冷启动</li>
-        </ul>
-        <a href="login.html?tab=register" class="btn btn-ghost btn-block">咨询接入</a>
-      </div>
-      <div class="plan pop reveal">
-        <span class="pop-tag">最常用</span>
-        <span class="mode-no" style="color:#fff">模式二</span>
-        <h3>竞价 + 服务</h3>
-        <p class="desc">适合已有预算体系的客户，提升竞价效率。</p>
-        <div class="mode-flow">客户自有预算 <i class="ri-arrow-right-line"></i> 不改预算体系 <i class="ri-arrow-right-line"></i> 竞价能力 + 订阅服务</div>
-        <ul>
-          <li><i class="ri-checkbox-circle-fill"></i>提升竞价效率，更精准流量匹配</li>
-          <li><i class="ri-checkbox-circle-fill"></i>稳定放量，持续优化投放效果</li>
-          <li><i class="ri-checkbox-circle-fill"></i>保留原预算体系，灵活接入无改造</li>
-        </ul>
-        <a href="login.html?tab=register" class="btn btn-primary btn-block">开始接入</a>
-      </div>
-      <div class="plan reveal">
-        <span class="mode-no">模式三</span>
-        <h3>预算 + 竞价 + 服务</h3>
-        <p class="desc">适合追求增量的多场景客户，扩大可竞价规模。</p>
-        <div class="mode-flow">客户预算 + 补充预算源 <i class="ri-arrow-right-line"></i> 扩大竞价规模 <i class="ri-arrow-right-line"></i> DSP 竞价 + 服务</div>
-        <ul>
-          <li><i class="ri-checkbox-circle-fill"></i>提升预算覆盖，接入更多优质流量</li>
-          <li><i class="ri-checkbox-circle-fill"></i>提升收益效率，更高 eCPM 与收益</li>
-          <li><i class="ri-checkbox-circle-fill"></i>联合增长，多场景协同放量</li>
-        </ul>
-        <a href="login.html" class="btn btn-ghost btn-block">联系商务</a>
-      </div>
-    </div>
+<section class="reference-section" id="pricing" aria-label="合作模式">
+  <div class="reference-stage" tabindex="0" aria-label="横向浏览合作模式完整方案图">
+    <img src="assets/ppt/cooperation.jpeg" loading="lazy" decoding="async" alt="合作模式：全托管合作、竞价加服务、预算加竞价加服务" />
   </div>
+  <div class="reference-details"><h2>灵活接入，共建长期增长</h2><ul><li>全托管合作：适合冷启动客户</li><li>竞价加服务：适合已有预算体系的客户</li><li>预算加竞价加服务：适合追求增量的多场景客户</li></ul></div>
 </section>
 
 <!-- ============ FAQ ============ -->
@@ -350,7 +240,7 @@
   </div>
 </footer>
 
-<script src="assets/app.js?v=8"></script>
+<script src="assets/app.js?v=9"></script>
 
 
 

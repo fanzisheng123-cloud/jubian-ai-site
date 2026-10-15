@@ -1,0 +1,128 @@
+/* Landing-page reference sections use the approved PPT artwork directly. */
+html {
+  scroll-behavior: auto;
+}
+
+.nav-mobile-only {
+  display: none;
+}
+
+.reference-section {
+  position: relative;
+  padding: 40px 0;
+  overflow: hidden;
+  background: #eef8fb;
+  scroll-margin-top: 72px;
+}
+
+.reference-section:nth-of-type(even) {
+  background: #f2f8ff;
+}
+
+.reference-stage {
+  width: min(96vw, 1600px);
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid rgba(72, 157, 187, 0.18);
+  border-radius: 6px;
+  box-shadow: 0 20px 50px -36px rgba(12, 65, 96, 0.42);
+  background: #f5fcfd;
+}
+
+.reference-stage img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.reference-stage:focus-visible {
+  outline: 3px solid #2b6cf6;
+  outline-offset: -3px;
+}
+
+.reference-details {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 760px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .reference-section {
+    padding: 18px 0;
+  }
+
+  .reference-stage {
+    width: 100%;
+    overflow-x: auto;
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+    box-shadow: none;
+    scrollbar-width: thin;
+  }
+
+  .reference-stage img {
+    width: 920px;
+    max-width: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .nav {
+    width: calc(100vw - 32px);
+    max-width: none;
+  }
+
+  .nav .logo small,
+  .nav-cta > .btn-primary,
+  .nav-cta > .btn-ghost {
+    display: none;
+  }
+
+  .nav-cta {
+    gap: 6px;
+  }
+
+  .nav-mobile-only {
+    display: block;
+  }
+
+  .hero-copy,
+  .hero-visual {
+    min-width: 0;
+  }
+
+  .hero .wrap,
+  .logos .wrap,
+  .stats .wrap {
+    width: calc(100vw - 40px);
+    max-width: none;
+  }
+
+  .hero .eyebrow {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .hero h1 {
+    overflow-wrap: anywhere;
+    word-break: break-all;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reference-stage {
+    scroll-behavior: auto;
+  }
+}
