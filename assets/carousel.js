@@ -1,6 +1,6 @@
 /* 卡牌式轮播：scroll-snap + 当前卡居中放大，支持箭头/圆点/键盘/触摸/自动播放 */
 (function () {
-  var TARGETS = [['.feature-grid', 300], ['.flow', 264], ['.scn-grid', 284], ['.steps', 252], ['.price-grid', 360]];
+  var TARGETS = [['.scn-grid', 284]];
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   TARGETS.forEach(function (t) {
